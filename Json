@@ -1,0 +1,19 @@
+<?php
+
+
+$url = "https://covid-19.dataflowki.com/v1/world";
+
+$data = file_get_contents($url);
+
+/*$data= '{"Active Cases_text":"+1,482","Country_text":"World","Last Update":"2023-08-29 11:46","New Cases_text":"+6","New Deaths_text":"0","Total Cases_text":"694,499,245","Total Deaths_text":"6,910,960","Total Recovered_text":"666,267,794"}';*/
+
+$data = json_decode($data, true);
+       
+$arr = array(
+  'Country' => $data['Country_text'],  
+  'New cases' => $data['New Cases_text'],
+  'New deaths'=> $data['Deaths_text'], 
+  'total deaths' => $data['Total Deaths_text']
+); 
+
+echo json_encode($arr);
